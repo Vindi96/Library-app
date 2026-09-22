@@ -1,0 +1,47 @@
+{% extends "_layouts/base" %}
+{% set title = "Home" %}
+
+{% block content %}
+    <section class="hero">
+        <h1>Welcome to {{ siteName }}</h1>
+        <p>Search the catalog, browse upcoming events, and discover what your library has to offer.</p>
+    </section>
+
+    <section class="upcoming-events">
+        <h2>Upcoming Events</h2>
+        {% set events = craft.entries()
+            .section('events')
+            .eventDate('>= ' ~ now|date('Y-m-d'))
+            .orderBy('eventDate asc')
+            .limit(3)
+            .all() %}
+        <ul class="event-list">
+            {% for event in events %}
+                <li>
+                    <a href="{{ event.url }}">{{ event.title }}</a>
+                    <span class="event-date">{{ event.eventDate|date('M j, Y') }}</span>
+                </li>
+            {% else %}
+                <li>No upcoming events scheduled.</li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url('events') }}">View all events →</a>
+    </section>
+
+    <section class="new-arrivals">
+        <h2>New in the Catalog</h2>
+        {% set books = craft.entries().section('books').orderBy('postDate desc').limit(6).all() %}
+        <div class="book-grid">
+            {% for book in books %}
+                <a class="book-card" href="{{ book.url }}">
+                    {% if book.coverImage.one() %}
+                        <img src="{{ book.coverImage.one().url }}" alt="{{ book.title }}">
+                    {% endif %}
+                    <h3>{{ book.title }}</h3>
+                    <p>{{ book.author }}</p>
+                </a>
+            {% endfor %}
+        </div>
+        <a href="{{ url('books') }}">Browse the full catalog →</a>
+    </section>
+{% endblock %}

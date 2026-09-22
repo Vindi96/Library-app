@@ -1,0 +1,27 @@
+{% extends "_layouts/base" %}
+{% set title = "Events" %}
+
+{% block content %}
+    <h1>Library Events &amp; Programs</h1>
+
+    {% set events = craft.entries()
+        .section('events')
+        .eventDate('>= ' ~ now|date('Y-m-d'))
+        .orderBy('eventDate asc')
+        .all() %}
+
+    <ul class="event-list">
+        {% for event in events %}
+            <li class="event-item">
+                <a href="{{ event.url }}"><h2>{{ event.title }}</h2></a>
+                <p class="event-meta">
+                    {{ event.eventDate|date('l, F j, Y') }} · {{ event.eventLocation }}
+                    {% if event.registrationRequired %}<span class="badge">Registration required</span>{% endif %}
+                </p>
+                <p>{{ event.summary|striptags|slice(0, 160) }}…</p>
+            </li>
+        {% else %}
+            <li>No upcoming events. Check back soon!</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "_layouts/base" %}
+{% set title = entry.title %}
+
+{% block content %}
+    <article class="page-detail">
+        <h1>{{ entry.title }}</h1>
+        <div class="content">{{ entry.summary|nl2br }}</div>
+    </article>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "_layouts/base" %}
+{% set title = "Catalog" %}
+
+{% block content %}
+    <h1>Book Catalog</h1>
+
+    <form method="get" class="catalog-filters">
+        <input type="text" name="q" placeholder="Search title or author" value="{{ craft.app.request.getParam('q') }}">
+        <select name="genre">
+            <option value="">All Genres</option>
+            {% set field = craft.app.fields.getFieldByHandle('genre') %}
+            {% for option in field.options %}
+                <option value="{{ option.value }}" {% if craft.app.request.getParam('genre') == option.value %}selected{% endif %}>
+                    {{ option.label }}
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+
+    {% set query = craft.entries().section('books') %}
+    {% if craft.app.request.getParam('genre') %}
+        {% set query = query.genre(craft.app.request.getParam('genre')) %}
+    {% endif %}
+    {% if craft.app.request.getParam('q') %}
+        {% set query = query.search(craft.app.request.getParam('q')) %}
+    {% endif %}
+
+    {% paginate query.limit(24) as pageInfo, books %}
+
+    <div class="book-grid">
+        {% for book in books %}
+            <a class="book-card" href="{{ book.url }}">
+                {% if book.coverImage.one() %}
+                    <img src="{{ book.coverImage.one().url }}" alt="{{ book.title }}">
+                {% endif %}
+                <h3>{{ book.title }}</h3>
+                <p>{{ book.author }}</p>
+                <span class="availability {{ book.available ? 'available' : 'checked-out' }}">
+                    {{ book.available ? 'Available' : 'Checked Out' }}
+                </span>
+            </a>
+        {% else %}
+            <p>No books matched your search.</p>
+        {% endfor %}
+    </div>
+
+    {% if pageInfo.totalPages > 1 %}
+        <nav class="pagination">
+            {% if pageInfo.prevUrl %}<a href="{{ pageInfo.prevUrl }}">← Previous</a>{% endif %}
+            <span>Page {{ pageInfo.currentPage }} of {{ pageInfo.totalPages }}</span>
+            {% if pageInfo.nextUrl %}<a href="{{ pageInfo.nextUrl }}">Next →</a>{% endif %}
+        </nav>
+    {% endif %}
+{% endblock %}

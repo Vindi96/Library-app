@@ -1,0 +1,20 @@
+{% extends "_layouts/base" %}
+{% set title = "Staff Directory" %}
+
+{% block content %}
+    <h1>Staff Directory</h1>
+
+    {% set staffMembers = craft.entries().section('staff').orderBy('title asc').all() %}
+    <div class="staff-grid">
+        {% for member in staffMembers %}
+            <a class="staff-card" href="{{ member.url }}">
+                {% if member.photo.one() %}
+                    <img src="{{ member.photo.one().url }}" alt="{{ member.title }}">
+                {% endif %}
+                <h3>{{ member.title }}</h3>
+                <p>{{ member.jobTitle }}</p>
+                <p class="department">{{ member.department.label }}</p>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

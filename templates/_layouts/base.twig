@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ siteName }}{% endblock %} · {{ siteName }}</title>
+    <link rel="stylesheet" href="{{ url('/css/site.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <a class="logo" href="{{ siteUrl }}">{{ siteName }}</a>
+        <nav>
+            <a href="{{ url('books') }}">Catalog</a>
+            <a href="{{ url('events') }}">Events</a>
+            <a href="{{ url('staff') }}">Staff Directory</a>
+            <a href="{{ url('hours') }}">Hours &amp; Locations</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; {{ now|date('Y') }} {{ siteName }}. All rights reserved.</p>
+    </footer>
+</body>
+</html>

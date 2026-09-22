@@ -1,0 +1,15 @@
+{% extends "_layouts/base" %}
+{% set title = entry.title %}
+
+{% block content %}
+    <article class="event-detail">
+        <h1>{{ entry.title }}</h1>
+        <p class="event-meta">
+            {{ entry.eventDate|date('l, F j, Y') }} · {{ entry.eventLocation }}
+        </p>
+        {% if entry.registrationRequired %}
+            <p class="badge">Registration required</p>
+        {% endif %}
+        <div class="summary">{{ entry.summary|nl2br }}</div>
+    </article>
+{% endblock %}
