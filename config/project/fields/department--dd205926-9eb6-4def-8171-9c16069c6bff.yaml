@@ -1,0 +1,51 @@
+columnSuffix: null
+handle: department
+instructions: null
+name: Department
+searchable: false
+settings:
+  customOptions: false
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - Circulation
+        -
+          - value
+          - circulation
+    -
+      __assoc__:
+        -
+          - label
+          - Reference
+        -
+          - value
+          - reference
+    -
+      __assoc__:
+        -
+          - label
+          - "Children's Services"
+        -
+          - value
+          - childrens
+    -
+      __assoc__:
+        -
+          - label
+          - Administration
+        -
+          - value
+          - admin
+    -
+      __assoc__:
+        -
+          - label
+          - IT
+        -
+          - value
+          - it
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

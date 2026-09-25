@@ -1,0 +1,128 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  ce8f7ceb-83f7-4efc-a2da-f2c614bebdc1:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 94e8b65c-874b-4d00-97ba-a444a443be25 # Author
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c89247ed-33c3-4119-9fe7-ab453bd6afb7
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: c4af5495-0406-4c8f-a9a2-821a8a8e9a8d # ISBN
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 59a26adb-7db7-4743-baf2-2259175a8d6f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 93b465b7-b2ae-4e9e-87d3-8d43598d5023 # Genre
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d00be5bd-4854-4a09-8041-313abf58d353
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 7fc985df-9b48-44e4-a455-e744596a6fb5 # Available
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c92f3210-dda2-4044-889a-e7dd50ab4087
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 15b2bc0b-e3fd-471d-9a5f-d00334a4067a # Cover Image
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4ded4ede-5494-43ed-ad92-c6c96e1a6ef7
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 4e2ae6d5-baae-4a6d-983d-1542c107cdeb # Summary
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a6080eb6-7a3b-4640-ab34-6e2a4016dd4f
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 08e1dc44-6d57-438c-9ad2-8222fe01aaaa
+        userCondition: null
+    thumbFieldKey: null
+handle: books
+hasTitleField: false
+icon: null
+name: Books
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

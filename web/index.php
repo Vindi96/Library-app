@@ -3,12 +3,10 @@
  * Craft web bootstrap file
  */
 
-// Load Composer's autoloader
-require dirname(__DIR__) . '/vendor/autoload.php';
-
-// Load dotenv
-craft\helpers\App::bootstrapDotenv(dirname(__DIR__));
+// Load shared bootstrap
+require dirname(__DIR__) . '/bootstrap.php';
 
 // Load and run Craft
-$app = craft\helpers\App::createWebApplication();
+/** @var craft\web\Application $app */
+$app = require CRAFT_VENDOR_PATH . '/craftcms/cms/bootstrap/web.php';
 $app->run();

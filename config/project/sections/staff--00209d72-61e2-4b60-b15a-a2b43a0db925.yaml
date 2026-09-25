@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: eaeacb77-feab-4ba6-8cbf-7a185248f607 # Staff
+handle: staff
+maxAuthors: 1
+minAuthors: 1
+name: Staff
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  a74e17d6-0081-4dfe-9b45-ec38e2abae0d: # Library Craft Ddev
+    enabledByDefault: true
+    hasUrls: true
+    template: staff/_entry
+    uriFormat: 'staff/{slug}'
+type: channel

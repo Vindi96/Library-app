@@ -9,10 +9,13 @@ use craft\fields\Date as DateField;
 use craft\fields\Dropdown as DropdownField;
 use craft\fields\Lightswitch as LightswitchField;
 use craft\fields\PlainText;
+use craft\fs\Local as LocalFs;
 use craft\models\EntryType;
 use craft\models\FieldLayout;
 use craft\models\Section;
 use craft\models\Section_SiteSettings;
+use craft\models\Volume;
+use yii\base\Exception;
 
 /**
  * Sets up the content model for a public library website:
@@ -28,13 +31,32 @@ class m240101_000000_setup_library_content extends Migration
         $fieldsService = Craft::$app->getFields();
         $entriesService = Craft::$app->getEntries();
 
+        // ---- Asset volume -------------------------------------------
+
+        $fs = new LocalFs([
+            'name' => 'Library Media',
+            'handle' => 'libraryMedia',
+            'path' => '@webroot/uploads',
+            'hasUrls' => true,
+            'url' => '@web/uploads',
+        ]);
+        $this->check(Craft::$app->getFs()->saveFilesystem($fs), $fs);
+
+        $volume = new Volume([
+            'name' => 'Library Media',
+            'handle' => 'libraryMedia',
+            'fsHandle' => $fs->handle,
+        ]);
+        $this->check(Craft::$app->getVolumes()->saveVolume($volume), $volume);
+        $volumeSource = "volume:$volume->uid";
+
         // ---- Fields -------------------------------------------------
 
-        $author = new PlainText(['name' => 'Author', 'handle' => 'author']);
-        $fieldsService->saveField($author);
+        $author = new PlainText(['name' => 'Author', 'handle' => 'bookAuthor']);
+        $this->check($fieldsService->saveField($author), $author);
 
         $isbn = new PlainText(['name' => 'ISBN', 'handle' => 'isbn']);
-        $fieldsService->saveField($isbn);
+        $this->check($fieldsService->saveField($isbn), $isbn);
 
         $genre = new DropdownField([
             'name' => 'Genre',
@@ -48,36 +70,37 @@ class m240101_000000_setup_library_content extends Migration
                 ['label' => 'Periodical', 'value' => 'periodical'],
             ],
         ]);
-        $fieldsService->saveField($genre);
+        $this->check($fieldsService->saveField($genre), $genre);
 
         $available = new LightswitchField(['name' => 'Available', 'handle' => 'available', 'default' => true]);
-        $fieldsService->saveField($available);
+        $this->check($fieldsService->saveField($available), $available);
 
         $coverImage = new AssetsField([
             'name' => 'Cover Image',
             'handle' => 'coverImage',
-            'singleUploadLocationSource' => 'volume:library-media',
+            'sources' => [$volumeSource],
+            'defaultUploadLocationSource' => $volumeSource,
             'maxRelations' => 1,
         ]);
-        $fieldsService->saveField($coverImage);
+        $this->check($fieldsService->saveField($coverImage), $coverImage);
 
         $summary = new PlainText(['name' => 'Summary', 'handle' => 'summary', 'multiline' => true]);
-        $fieldsService->saveField($summary);
+        $this->check($fieldsService->saveField($summary), $summary);
 
         $eventDate = new DateField(['name' => 'Event Date', 'handle' => 'eventDate', 'showTimeZone' => false]);
-        $fieldsService->saveField($eventDate);
+        $this->check($fieldsService->saveField($eventDate), $eventDate);
 
         $eventLocation = new PlainText(['name' => 'Location', 'handle' => 'eventLocation']);
-        $fieldsService->saveField($eventLocation);
+        $this->check($fieldsService->saveField($eventLocation), $eventLocation);
 
         $registrationRequired = new LightswitchField([
             'name' => 'Registration Required',
             'handle' => 'registrationRequired',
         ]);
-        $fieldsService->saveField($registrationRequired);
+        $this->check($fieldsService->saveField($registrationRequired), $registrationRequired);
 
         $jobTitle = new PlainText(['name' => 'Job Title', 'handle' => 'jobTitle']);
-        $fieldsService->saveField($jobTitle);
+        $this->check($fieldsService->saveField($jobTitle), $jobTitle);
 
         $department = new DropdownField([
             'name' => 'Department',
@@ -90,15 +113,16 @@ class m240101_000000_setup_library_content extends Migration
                 ['label' => 'IT', 'value' => 'it'],
             ],
         ]);
-        $fieldsService->saveField($department);
+        $this->check($fieldsService->saveField($department), $department);
 
         $photo = new AssetsField([
             'name' => 'Photo',
             'handle' => 'photo',
-            'singleUploadLocationSource' => 'volume:library-media',
+            'sources' => [$volumeSource],
+            'defaultUploadLocationSource' => $volumeSource,
             'maxRelations' => 1,
         ]);
-        $fieldsService->saveField($photo);
+        $this->check($fieldsService->saveField($photo), $photo);
 
         // ---- Sections -------------------------------------------------
 
@@ -151,6 +175,17 @@ class m240101_000000_setup_library_content extends Migration
         return false;
     }
 
+    /**
+     * Throws if a save failed, so the migration never half-succeeds silently.
+     */
+    private function check(bool $saved, object $model): void
+    {
+        if (!$saved) {
+            $errors = method_exists($model, 'getErrorSummary') ? $model->getErrorSummary(true) : [];
+            throw new Exception(sprintf('Could not save %s: %s', $model::class, implode(' ', $errors)));
+        }
+    }
+
     private function createSection(
         $entriesService,
         string $name,
@@ -172,10 +207,9 @@ class m240101_000000_setup_library_content extends Migration
             'name' => $name,
             'handle' => $handle,
             'hasTitleField' => true,
-            'titleTranslationMethod' => \craft\models\EntryType::TITLE_TRANSLATION_METHOD_SITE,
         ]);
         $entryType->setFieldLayout($fieldLayout);
-        $entriesService->saveEntryType($entryType);
+        $this->check($entriesService->saveEntryType($entryType), $entryType);
 
         $section = new Section([
             'name' => $name,
@@ -192,6 +226,6 @@ class m240101_000000_setup_library_content extends Migration
             ],
         ]);
         $section->setEntryTypes([$entryType]);
-        $entriesService->saveSection($section);
+        $this->check($entriesService->saveSection($section), $section);
     }
 }

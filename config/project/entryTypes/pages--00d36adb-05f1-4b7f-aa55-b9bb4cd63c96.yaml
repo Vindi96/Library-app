@@ -1,0 +1,43 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  6c6202b2-1d1d-4d5f-8a73-e0d4e8df237c:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: null
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 4e2ae6d5-baae-4a6d-983d-1542c107cdeb # Summary
+            handle: null
+            instructions: null
+            label: null
+            oldFieldUid: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: aee20b72-3100-4fe2-925b-3dcda29d5c61
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: ba3b518a-0172-4553-a3ff-ebfa56594a9e
+        userCondition: null
+    thumbFieldKey: null
+handle: pages
+hasTitleField: false
+icon: null
+name: Pages
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

@@ -1,0 +1,8 @@
+baseUrl: $PRIMARY_SITE_URL
+handle: default
+hasUrls: true
+language: en
+name: 'Library Craft Ddev'
+primary: true
+siteGroup: 6a5a923c-6963-4a0e-aea3-7d1c5e1b3eaa # Library Craft Ddev
+sortOrder: 1

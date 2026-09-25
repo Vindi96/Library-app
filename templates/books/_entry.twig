@@ -8,7 +8,7 @@
         {% endif %}
         <div>
             <h1>{{ entry.title }}</h1>
-            <p class="author">by {{ entry.author }}</p>
+            <p class="author">by {{ entry.bookAuthor }}</p>
             <p class="isbn">ISBN: {{ entry.isbn }}</p>
             <p class="genre">Genre: {{ entry.genre.label }}</p>
             <p class="availability {{ entry.available ? 'available' : 'checked-out' }}">

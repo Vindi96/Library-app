@@ -1,0 +1,51 @@
+dateModified: 1790337109
+email:
+  fromEmail: jpvmadhushani@gmail.com
+  fromName: 'Library Craft Ddev'
+  transportType: craft\mail\transportadapters\Sendmail
+fs:
+  libraryMedia:
+    hasUrls: true
+    name: 'Library Media'
+    settings:
+      path: '@webroot/uploads'
+    type: craft\fs\Local
+    url: '@web/uploads'
+meta:
+  __names__:
+    00d36adb-05f1-4b7f-aa55-b9bb4cd63c96: Pages # Pages
+    1ea0cb9c-145b-422e-a50a-881a7c26a21e: 'Registration Required' # Registration Required
+    4e2ae6d5-baae-4a6d-983d-1542c107cdeb: Summary # Summary
+    5aefeaef-6d13-4779-9065-c9197e30d02c: Events # Events
+    5b36faaa-0fd2-42bc-aa6a-8e3ec45a159c: Events # Events
+    6a5a923c-6963-4a0e-aea3-7d1c5e1b3eaa: 'Library Craft Ddev' # Library Craft Ddev
+    7fc985df-9b48-44e4-a455-e744596a6fb5: Available # Available
+    8f236159-314c-4bae-afa8-5beda7e1d967: 'Event Date' # Event Date
+    15b2bc0b-e3fd-471d-9a5f-d00334a4067a: 'Cover Image' # Cover Image
+    0059e16d-e170-4e5f-aeba-6c304a3f17ba: Pages # Pages
+    93b465b7-b2ae-4e9e-87d3-8d43598d5023: Genre # Genre
+    94e8b65c-874b-4d00-97ba-a444a443be25: Author # Author
+    00209d72-61e2-4b60-b15a-a2b43a0db925: Staff # Staff
+    524eb8c5-281b-463a-839d-5b08fe175197: Photo # Photo
+    075194bf-f17a-4dc0-974f-07bf25fc608a: Location # Location
+    370984da-488d-4c07-8484-b77d7e39cf9b: 'Library Media' # Library Media
+    439120c4-73a7-48d7-9289-456525e3ebf3: Books # Books
+    a74e17d6-0081-4dfe-9b45-ec38e2abae0d: 'Library Craft Ddev' # Library Craft Ddev
+    c4af5495-0406-4c8f-a9a2-821a8a8e9a8d: ISBN # ISBN
+    d3e158af-42e1-4e72-8e69-ca39d8c8c2f6: Books # Books
+    d84f40a1-73b2-4c12-a8dc-9b57fd5835a5: 'Job Title' # Job Title
+    dd205926-9eb6-4def-8171-9c16069c6bff: Department # Department
+    eaeacb77-feab-4ba6-8cbf-7a185248f607: Staff # Staff
+system:
+  edition: solo
+  live: true
+  name: 'Library Craft Ddev'
+  schemaVersion: 5.11.0.2
+  timeZone: America/Los_Angeles
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: null
+  photoVolumeUid: null
+  require2fa: false
+  requireEmailVerification: true

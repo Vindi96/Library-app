@@ -1,0 +1,24 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 00d36adb-05f1-4b7f-aa55-b9bb4cd63c96 # Pages
+handle: pages
+maxAuthors: 1
+minAuthors: 1
+name: Pages
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  a74e17d6-0081-4dfe-9b45-ec38e2abae0d: # Library Craft Ddev
+    enabledByDefault: true
+    hasUrls: true
+    template: pages/_entry
+    uriFormat: '{slug}'
+structure:
+  maxLevels: null
+  uid: 1f0fd5cd-a348-46bc-89cb-f6542f21bca8
+type: structure

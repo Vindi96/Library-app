@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 5b36faaa-0fd2-42bc-aa6a-8e3ec45a159c # Events
+handle: events
+maxAuthors: 1
+minAuthors: 1
+name: Events
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  a74e17d6-0081-4dfe-9b45-ec38e2abae0d: # Library Craft Ddev
+    enabledByDefault: true
+    hasUrls: true
+    template: events/_entry
+    uriFormat: 'events/{slug}'
+type: channel
