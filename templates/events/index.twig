@@ -18,7 +18,8 @@
                     {{ event.eventDate|date('l, F j, Y') }} · {{ event.eventLocation }}
                     {% if event.registrationRequired %}<span class="badge">Registration required</span>{% endif %}
                 </p>
-                <p>{{ event.summary|striptags|slice(0, 160) }}…</p>
+                {% set summary = event.summary|striptags %}
+                <p>{{ summary|length > 160 ? summary|slice(0, 160) ~ '…' : summary }}</p>
             </li>
         {% else %}
             <li>No upcoming events. Check back soon!</li>

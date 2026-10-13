@@ -197,10 +197,13 @@ class m240101_000000_setup_library_content extends Migration
     ): void {
         $fieldLayout = new FieldLayout(['type' => \craft\elements\Entry::class]);
         $tab = new \craft\models\FieldLayoutTab(['name' => 'Content', 'layout' => $fieldLayout]);
-        $tab->setElements(array_map(
-            fn($field) => new \craft\fieldlayoutelements\CustomField($field),
-            $fields
-        ));
+        $tab->setElements([
+            new \craft\fieldlayoutelements\entries\EntryTitleField(),
+            ...array_map(
+                fn($field) => new \craft\fieldlayoutelements\CustomField($field),
+                $fields
+            ),
+        ]);
         $fieldLayout->setTabs([$tab]);
 
         $entryType = new EntryType([
